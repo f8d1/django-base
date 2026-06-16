@@ -21,11 +21,14 @@
                     <p>{{ product.description|linebreaks }}</p>
                 </div>
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary btn-lg">Добавить в корзину</button>
+                    <form action="{% url "cart:cart_add" product.id %}" method="post">
+                        {{ cart_product_form }}
+                        {% csrf_token %}
+                        <button class="btn btn-primary btn-lg" type="submit">Добавить в корзину</button>
+                    </form>
                 </div>
             </div>
         </div>
-
         {% if related_products %}
         <div class="related-products mt-5">
             <h2>Похожие товары</h2>
